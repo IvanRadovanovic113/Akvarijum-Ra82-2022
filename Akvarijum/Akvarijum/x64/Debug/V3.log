@@ -1,2 +1,7 @@
 ﻿  Main.cpp
+  Util.cpp
+C:\Users\ivrad\Desktop\grafika\vezbe\Projekat\Akvarijum\Util.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+C:\Users\ivrad\Desktop\grafika\vezbe\Projekat\Akvarijum\Util.cpp(156,1): warning C4715: 'loadImageToCursor': not all control paths return a value
+  LINK : C:\Users\ivrad\Desktop\grafika\vezbe\Projekat\Akvarijum\x64\Debug\Akvarijum.exe not found or not built by the last incremental link; performing full link
   V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\vezbe\Projekat\Akvarijum\x64\Debug\Akvarijum.exe
