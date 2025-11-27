@@ -1,0 +1,15 @@
+﻿  Main.cpp
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(110,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(141,96): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(150,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(173,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(182,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(183,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(238,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(258,19): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Main.cpp(261,19): warning C4305: '+=': truncation from 'double' to 'float'
+  Util.cpp
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Util.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\Util.cpp(156,1): warning C4715: 'loadImageToCursor': not all control paths return a value
+  V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\x64\Debug\V3.exe
