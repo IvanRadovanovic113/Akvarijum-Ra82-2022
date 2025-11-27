@@ -1,13 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\",
+  "WorkspaceRootPath": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\rect.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\rect.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:rect.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\rect.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:rect.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,25 +31,37 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "rect.frag",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\rect.frag",
+              "RelativeDocumentMoniker": "rect.frag",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\rect.frag",
+              "RelativeToolTip": "rect.frag",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-27T21:01:07.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "rect.vert",
-              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\rect.vert",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\rect.vert",
               "RelativeDocumentMoniker": "rect.vert",
-              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\rect.vert",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\rect.vert",
               "RelativeToolTip": "rect.vert",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-27T20:38:00.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-27T20:38:00.967Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Main.cpp",
-              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\Main.cpp",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\Main.cpp",
               "RelativeDocumentMoniker": "Main.cpp",
-              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\RG_V3\\V3\\Main.cpp",
-              "RelativeToolTip": "Main.cpp",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAAAJwAAABQAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\vezbe\\Projekat\\Akvarijum\\Main.cpp*",
+              "RelativeToolTip": "Main.cpp*",
+              "ViewState": "AgIAALsAAAAAAAAAAAAUwMsAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-27T20:19:17.101Z",
               "EditorCaption": ""

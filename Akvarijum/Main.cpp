@@ -24,7 +24,6 @@ float moveSpeed = 0.005f;
 int screenWidth = 1000;
 int screenHeight = 800;
 
-float initialJumpTime = -1.0f;
 
 void preprocessTexture(unsigned& texture, const char* filepath) {
     texture = loadImageToTexture(filepath); // Učitavanje teksture
@@ -95,6 +94,14 @@ void drawRect(unsigned int shader, unsigned int VAO, float x, float y)
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
+void drawLine(unsigned int shader, unsigned int VAO)
+{
+    glUseProgram(shader);
+    glBindVertexArray(VAO);
+    glLineWidth(10.0f); // debljina linije u pikselima
+    glDrawArrays(GL_LINES, 0, 2);
+}
+
 int main()
 {
     // Inicijalizacija GLFW i postavljanje na verziju 3 sa programabilnim pajplajnom
@@ -133,11 +140,45 @@ int main()
          0.1f, 0.1f, 0.0f, 1.0f, 1.0f, // gornje desno teme
     };
 
+	// Pravougaonik akvarijuma
+    float aquariumRect[] = {
+        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f,   // donje levo
+         1.0f, -1.0f, 1.0f, 1.0f, 1.0f,   // donje desno
+         1.0f,  0.4f, 1.0f, 1.0f, 1.0f,   // gornje desno (70%)
+        -1.0f,  0.4f, 1.0f, 1.0f, 1.0f    // gornje levo (70%)
+    };
+
+    // Donja linija (dodiruje dno)
+    float bottomLine[] = {
+        -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+         1.0f, -1.0f, 0.0f, 0.0f, 0.0f
+    };
+
+    // Leva linija
+    float leftLine[] = {
+        -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+        -1.0f,  0.4f, 0.0f, 0.0f, 0.0f
+    };
+
+    // Desna linija
+    float rightLine[] = {
+         1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+         1.0f,  0.4f, 0.0f, 0.0f, 0.0f
+    };
+
     unsigned int VAOGoldFish;
     unsigned int VAOBlowFish;
 
     formVAOs(goldFish, sizeof(goldFish), VAOGoldFish);
     formVAOs(blowFish, sizeof(blowFish), VAOBlowFish);
+
+	// VAO-i za akvarijum i linije
+    unsigned int VAOAquarium, VAOBottom, VAOLeft, VAORight;
+
+    formVAOs(aquariumRect, sizeof(aquariumRect), VAOAquarium);
+    formVAOs(bottomLine, sizeof(bottomLine), VAOBottom);
+    formVAOs(leftLine, sizeof(leftLine), VAOLeft);
+    formVAOs(rightLine, sizeof(rightLine), VAORight);
 
     glClearColor(0.5f, 0.6f, 1.0f, 1.0f); // Postavljanje boje pozadine
 
@@ -158,8 +199,24 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT); // Bojenje pozadine, potrebno kako pomerajući objekti ne bi ostavljali otisak
 
+        // Crtanje ivica
+        glUniform1f(glGetUniformLocation(rectShader, "uAlpha"), 1.0f); // ribice su pune
+        drawLine(rectShader, VAOBottom);
+        drawLine(rectShader, VAOLeft);
+        drawLine(rectShader, VAORight);
+
+        // Crtanje riba
         drawRect(rectShader, VAOGoldFish, goldX, goldY);
         drawRect(rectShader, VAOBlowFish, blowX, blowY);
+
+        // Providni akvarijum
+        glUseProgram(rectShader);
+		glUniform1f(glGetUniformLocation(rectShader, "uAlpha"), 0.2f); // providnost akvarijuma
+        glUniform1f(glGetUniformLocation(rectShader, "uX"), 0.0f);
+        glUniform1f(glGetUniformLocation(rectShader, "uY"), 0.0f);
+        glBindVertexArray(VAOAquarium);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
 
         glfwSwapBuffers(window); // Zamena bafera - prednji i zadnji bafer se menjaju kao štafeta; dok jedan procesuje, drugi se prikazuje.
         glfwPollEvents(); // Sinhronizacija pristiglih događaja

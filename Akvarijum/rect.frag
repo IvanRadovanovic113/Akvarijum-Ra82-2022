@@ -1,9 +1,11 @@
-#version 330 core
+﻿#version 330 core
 
 in vec4 chCol;
 out vec4 outCol;
 
+uniform float uAlpha; // dodato za providnost
+
 void main()
 {
-    outCol = chCol;
-} 
+    outCol = vec4(chCol.rgb, uAlpha);
+}
