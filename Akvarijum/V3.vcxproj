@@ -143,9 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\blowFish.png" />
+    <Image Include="res\bubble.png" />
+    <Image Include="res\goldFish.png" />
     <Image Include="res\sand.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="res\seaweed.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -58,5 +58,14 @@
     <Image Include="res\blowFish.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bubble.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\goldFish.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\seaweed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

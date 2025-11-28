@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include "Util.h"
+#include <vector>
 
 #define NUM_SLICES 40
 
@@ -28,6 +29,12 @@ unsigned int sandTexture;
 unsigned int blowFishTexture;
 unsigned int goldFishTexture;
 unsigned int seaweedTexture;
+unsigned int bubbleTexture;
+
+// mehurići vreme
+double lastGoldBubbleTime = 0.0;
+double lastBlowBubbleTime = 0.0;
+double bubbleCooldown = 0.4; // 0.4 sekunde pauze
 
 void preprocessTexture(unsigned& texture, const char* filepath) {
     texture = loadImageToTexture(filepath);
@@ -121,6 +128,23 @@ void drawTexturedRect(unsigned int shader, unsigned int VAO, unsigned int textur
     glBindVertexArray(0);
 }
 
+struct Bubble {
+    float x, y;
+    float speed = 0.004f;
+};
+
+std::vector<Bubble> goldBubbles;
+std::vector<Bubble> blowBubbles;
+
+void spawnBubbles(std::vector<Bubble>& bubbles, float fishX, float fishY, float scaleX) {
+    float mouthOffsetX = 0.15f * scaleX;  // pomeri do usta, zavisi od orijentacije
+    float mouthOffsetY = 0.02f;          // iznad centra
+
+    bubbles.push_back({ fishX + mouthOffsetX,     fishY + mouthOffsetY });
+    bubbles.push_back({ fishX + mouthOffsetX + 0.03f, fishY + mouthOffsetY + 0.03f });
+    bubbles.push_back({ fishX + mouthOffsetX - 0.03f, fishY + mouthOffsetY + 0.05f });
+}
+
 int main()
 {
     glfwInit();
@@ -199,6 +223,15 @@ int main()
         -0.73f,  -0.4f, 1.0f, 1.0f,   // gornje desno (malo viša)
         -0.95f,  -0.4f, 0.0f, 1.0f    // gornje levo
     };
+	//mehurići
+    float bubbleVertices[] = {
+        -0.02f, 0.02f,   0.0f, 1.0f,   // gornje levo
+        -0.02f,-0.02f,   0.0f, 0.0f,   // donje levo
+         0.02f,-0.02f,   1.0f, 0.0f,   // donje desno
+         0.02f, 0.02f,   1.0f, 1.0f    // gornje desno
+    };
+    unsigned int VAOBubble;
+    formVAOTexture(bubbleVertices, sizeof(bubbleVertices), VAOBubble);
     unsigned int VAOGoldFish, VAOBlowFish;
     formVAOTexture(goldFish, sizeof(goldFish), VAOGoldFish);
     formVAOTexture(blowFish, sizeof(blowFish), VAOBlowFish);
@@ -215,7 +248,7 @@ int main()
     unsigned int VAOSeaweed;
     formVAOTexture(seaweedVertices, sizeof(seaweedVertices), VAOSeaweed);
 
-    glClearColor(0.5f, 0.6f, 1.0f, 1.0f);
+    glClearColor(0.7f, 0.8f, 1.0f, 1.0f);
 
     preprocessTexture(sandTexture, "res/sand.png");
     if (!sandTexture) {
@@ -248,6 +281,13 @@ int main()
     else {
         std::cout << "Tekstura seaweed uspesno ucitana!" << std::endl;
     }
+    preprocessTexture(bubbleTexture, "res/bubble.png");
+    if (!bubbleTexture) {
+        std::cout << "Neuspesno ucitavanje teksture bubble!" << std::endl;
+    }
+    else {
+        std::cout << "Tekstura seaweed uspesno bubble!" << std::endl;
+    }
 
     float goldScaleX = 1.0f;
     float blowScaleX = 1.0f;
@@ -266,6 +306,24 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) blowX += moveSpeed;
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) blowY += moveSpeed;
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) blowY -= moveSpeed;
+
+        double now = glfwGetTime();
+
+        // GOLD (Z)
+        if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
+            if (now - lastGoldBubbleTime > bubbleCooldown) {
+                spawnBubbles(goldBubbles, goldX, goldY - 0.05f, -goldScaleX);
+                lastGoldBubbleTime = now;
+            }
+        }
+
+        // BLOW (K)
+        if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS) {
+            if (now - lastBlowBubbleTime > bubbleCooldown) {
+                spawnBubbles(blowBubbles, blowX - (0.05f * blowScaleX), blowY, blowScaleX);
+                lastBlowBubbleTime = now;
+            }
+        }
 
         //  Pesak
         drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f);
@@ -297,6 +355,34 @@ int main()
         glUniform1f(glGetUniformLocation(rectShader, "uY"), 0.0f);
         glBindVertexArray(VAOAquarium);
         glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+        // GOLD mehurići
+        for (int i = 0; i < goldBubbles.size(); i++) {
+            goldBubbles[i].y += goldBubbles[i].speed;
+            goldBubbles[i].x += sin(glfwGetTime() * 2.0f + i) * 0.0005f;
+
+            drawTexturedRect(textureShader, VAOBubble, bubbleTexture,
+                goldBubbles[i].x, goldBubbles[i].y, 1.0f, 1.0f);
+
+            if (goldBubbles[i].y > 0.4f)
+            {
+                goldBubbles.erase(goldBubbles.begin() + i); i--;
+            }
+        }
+
+        // BLOW mehurići
+        for (int i = 0; i < blowBubbles.size(); i++) {
+            blowBubbles[i].y += blowBubbles[i].speed;
+            blowBubbles[i].x += sin(glfwGetTime() * 2.0f + i) * 0.0005f;
+
+            drawTexturedRect(textureShader, VAOBubble, bubbleTexture,
+                blowBubbles[i].x, blowBubbles[i].y, 1.0f, 1.0f);
+
+            if (blowBubbles[i].y > 0.4f)
+            {
+                blowBubbles.erase(blowBubbles.begin() + i); i--;
+            }
+        }
 
         // Crne ivice akvarijuma (iznad svega)
         glUseProgram(colorShader);
