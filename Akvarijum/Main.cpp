@@ -27,6 +27,7 @@ int screenHeight = 800;
 unsigned int sandTexture;
 unsigned int blowFishTexture;
 unsigned int goldFishTexture;
+unsigned int seaweedTexture;
 
 void preprocessTexture(unsigned& texture, const char* filepath) {
     texture = loadImageToTexture(filepath);
@@ -183,14 +184,21 @@ int main()
          1.0f,  0.4f, 0.0f, 0.0f, 0.0f
     };
 
-    // Pesak (teksturisano dno)
+    // Pesak
     float sandVertices[] = {
         -1.0f, -1.0f,   0.0f, 0.0f,
          1.0f, -1.0f,   6.0f, 0.0f,
-         1.0f, -0.6f,   6.0f, 1.0f,
-        -1.0f, -0.6f,   0.0f, 1.0f
+         1.0f, -0.4f,   6.0f, 1.0f,
+        -1.0f, -0.4f,   0.0f, 1.0f
     };
 
+	// morska trava
+    float seaweedVertices[] = {
+        -0.95f, -0.8f,  0.0f, 0.0f,   // donje levo - malo dublje u pesak
+        -0.73f, -0.8f,  1.0f, 0.0f,   // donje desno (širimo je)
+        -0.73f,  -0.4f, 1.0f, 1.0f,   // gornje desno (malo viša)
+        -0.95f,  -0.4f, 0.0f, 1.0f    // gornje levo
+    };
     unsigned int VAOGoldFish, VAOBlowFish;
     formVAOTexture(goldFish, sizeof(goldFish), VAOGoldFish);
     formVAOTexture(blowFish, sizeof(blowFish), VAOBlowFish);
@@ -203,6 +211,9 @@ int main()
 
     unsigned int VAOSand;
     formVAOTexture(sandVertices, sizeof(sandVertices), VAOSand);
+
+    unsigned int VAOSeaweed;
+    formVAOTexture(seaweedVertices, sizeof(seaweedVertices), VAOSeaweed);
 
     glClearColor(0.5f, 0.6f, 1.0f, 1.0f);
 
@@ -230,6 +241,14 @@ int main()
         std::cout << "Tekstura peska uspesno goldFishTexture!" << std::endl;
     }
 
+    preprocessTexture(seaweedTexture, "res/seaweed.png");
+    if (!seaweedTexture) {
+        std::cout << "Neuspesno ucitavanje teksture seaweed!" << std::endl;
+    }
+    else {
+        std::cout << "Tekstura seaweed uspesno ucitana!" << std::endl;
+    }
+
     float goldScaleX = 1.0f;
     float blowScaleX = 1.0f;
 
@@ -251,6 +270,10 @@ int main()
         //  Pesak
         drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f);
 
+        // Seaweed 1 (leva)
+        drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.0f, 0.0f, 1.0f, 1.0f);
+
+
         // Ribe (uvek pune, bez providnosti)
         // Goldfish – orijentacija
         goldScaleX = (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) ? 1.0f :
@@ -264,9 +287,12 @@ int main()
 
         drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f, blowScaleX);
 
+        // Seaweed 2 (desna)
+        drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.7f, -0.1f, 1.0f, 1.0f);
+
         // Providno staklo (lagana plava providna površina)
         glUseProgram(rectShader);
-        glUniform1f(glGetUniformLocation(rectShader, "uAlpha"), 0.3f);
+        glUniform1f(glGetUniformLocation(rectShader, "uAlpha"), 0.2f);
         glUniform1f(glGetUniformLocation(rectShader, "uX"), 0.0f);
         glUniform1f(glGetUniformLocation(rectShader, "uY"), 0.0f);
         glBindVertexArray(VAOAquarium);
