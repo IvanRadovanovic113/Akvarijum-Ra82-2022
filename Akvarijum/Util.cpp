@@ -94,6 +94,14 @@ unsigned loadImageToTexture(const char* filePath) {
     int TextureHeight;
     int TextureChannels;
     unsigned char* ImageData = stbi_load(filePath, &TextureWidth, &TextureHeight, &TextureChannels, 0);
+    if (ImageData == NULL) {
+        std::cout << "Greska pri ucitavanju slike: " << stbi_failure_reason() << std::endl;
+    }
+    else {
+        std::cout << "Ucitana slika: " << filePath
+            << " (" << TextureWidth << "x" << TextureHeight
+            << "), Kanali: " << TextureChannels << std::endl;
+    }
     if (ImageData != NULL)
     {
         //Slike se osnovno ucitavaju naopako pa se moraju ispraviti da budu uspravne

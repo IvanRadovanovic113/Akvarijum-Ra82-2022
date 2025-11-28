@@ -130,6 +130,8 @@
     <None Include="color.frag" />
     <None Include="color.vert" />
     <None Include="packages.config" />
+    <None Include="texture.frag" />
+    <None Include="texture.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -140,12 +142,9 @@
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\cursor.png" />
-    <Image Include="res\cursorpress.png" />
-    <Image Include="res\fourlegs.png" />
-    <Image Include="res\grass.png" />
-    <Image Include="res\hat.png" />
-    <Image Include="res\twolegs.png" />
+    <Image Include="res\sand.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

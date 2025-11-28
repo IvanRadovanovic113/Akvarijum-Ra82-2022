@@ -28,6 +28,12 @@
     <None Include="color.frag">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="texture.vert">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="texture.frag">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -46,22 +52,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\cursor.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\cursorpress.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\fourlegs.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\grass.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\hat.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\twolegs.png">
+    <Image Include="res\sand.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
