@@ -100,13 +100,15 @@ void formVAOTexture(float* vertices, size_t size, unsigned int& VAO)
     glBindVertexArray(0);
 }
 
-void drawTexturedRect(unsigned int shader, unsigned int VAO, unsigned int texture, float x, float y, float alpha)
+void drawTexturedRect(unsigned int shader, unsigned int VAO, unsigned int texture,
+    float x, float y, float alpha, float scaleX)
 {
     glUseProgram(shader);
 
     glUniform1f(glGetUniformLocation(shader, "uX"), x);
     glUniform1f(glGetUniformLocation(shader, "uY"), y);
     glUniform1f(glGetUniformLocation(shader, "uAlpha"), alpha);
+    glUniform1f(glGetUniformLocation(shader, "uScaleX"), scaleX);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -228,7 +230,8 @@ int main()
         std::cout << "Tekstura peska uspesno goldFishTexture!" << std::endl;
     }
 
-
+    float goldScaleX = 1.0f;
+    float blowScaleX = 1.0f;
 
     while (!glfwWindowShouldClose(window))
     {
@@ -246,11 +249,20 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) blowY -= moveSpeed;
 
         //  Pesak
-        drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f);
+        drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f);
 
         // Ribe (uvek pune, bez providnosti)
-        drawTexturedRect(textureShader, VAOGoldFish, goldFishTexture, goldX, goldY, 1.0f);
-        drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f);
+        // Goldfish – orijentacija
+        goldScaleX = (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) ? 1.0f :
+            (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) ? -1.0f : goldScaleX;
+
+        drawTexturedRect(textureShader, VAOGoldFish, goldFishTexture, goldX, goldY, 1.0f, goldScaleX);
+
+        // Blowfish – orijentacija
+        blowScaleX = (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) ? -1.0f :
+            (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) ? 1.0f : blowScaleX;
+
+        drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f, blowScaleX);
 
         // Providno staklo (lagana plava providna površina)
         glUseProgram(rectShader);

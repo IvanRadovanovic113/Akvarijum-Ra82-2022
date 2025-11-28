@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:texture.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\rect.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -42,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "texture.frag",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.frag",
               "RelativeDocumentMoniker": "texture.frag",
@@ -61,14 +61,14 @@
               "RelativeDocumentMoniker": "texture.vert",
               "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.vert",
               "RelativeToolTip": "texture.vert",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-11-28T14:12:34.434Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Util.cpp",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Util.cpp",
               "RelativeDocumentMoniker": "Util.cpp",
@@ -111,7 +111,7 @@
               "RelativeDocumentMoniker": "Main.cpp",
               "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Main.cpp",
               "RelativeToolTip": "Main.cpp",
-              "ViewState": "AgIAAOMAAAAAAAAAAAAQwPoAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAOgAAAAAAAAAAAAQwAABAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-27T20:19:17.101Z",
               "EditorCaption": ""
