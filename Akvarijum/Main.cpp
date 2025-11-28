@@ -26,6 +26,7 @@ int screenHeight = 800;
 // texture
 unsigned int sandTexture;
 unsigned int blowFishTexture;
+unsigned int goldFishTexture;
 
 void preprocessTexture(unsigned& texture, const char* filepath) {
     texture = loadImageToTexture(filepath);
@@ -141,10 +142,10 @@ int main()
     unsigned int textureShader = createShader("texture.vert", "texture.frag");
 
     float goldFish[] = {
-        -0.2f,  0.2f,  0.0f, 0.0f, 1.0f,
-        -0.2f, -0.2f,  0.0f, 1.0f, 0.0f,
-         0.2f, -0.2f,  1.0f, 0.0f, 0.0f,
-         0.2f,  0.2f,  0.0f, 1.0f, 1.0f
+        -0.2f,  0.2f,  0.0f, 1.0f,
+        -0.2f, -0.2f,  0.0f, 0.0f,
+         0.2f, -0.2f,  1.0f, 0.0f,
+         0.2f,  0.2f,  1.0f, 1.0f,
     };
 
     float blowFish[] = {
@@ -189,7 +190,7 @@ int main()
     };
 
     unsigned int VAOGoldFish, VAOBlowFish;
-    formVAOs(goldFish, sizeof(goldFish), VAOGoldFish);
+    formVAOTexture(goldFish, sizeof(goldFish), VAOGoldFish);
     formVAOTexture(blowFish, sizeof(blowFish), VAOBlowFish);
 
     unsigned int VAOAquarium, VAOBottom, VAOLeft, VAORight;
@@ -219,6 +220,14 @@ int main()
         std::cout << "Tekstura peska uspesno blowFishTexture!" << std::endl;
     }
 
+    preprocessTexture(goldFishTexture, "res/goldFish.png");
+    if (!goldFishTexture) {
+        std::cout << "Neuspesno ucitavanje teksture goldFishTexture!" << std::endl;
+    }
+    else {
+        std::cout << "Tekstura peska uspesno goldFishTexture!" << std::endl;
+    }
+
 
 
     while (!glfwWindowShouldClose(window))
@@ -240,7 +249,7 @@ int main()
         drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f);
 
         // Ribe (uvek pune, bez providnosti)
-        drawRect(rectShader, VAOGoldFish, goldX, goldY);
+        drawTexturedRect(textureShader, VAOGoldFish, goldFishTexture, goldX, goldY, 1.0f);
         drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f);
 
         // Providno staklo (lagana plava providna površina)
