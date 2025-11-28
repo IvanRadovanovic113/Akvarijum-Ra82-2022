@@ -55,5 +55,8 @@
     <Image Include="res\sand.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\blowFish.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

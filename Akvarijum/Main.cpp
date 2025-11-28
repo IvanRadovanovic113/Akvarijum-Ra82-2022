@@ -25,6 +25,7 @@ int screenHeight = 800;
 
 // texture
 unsigned int sandTexture;
+unsigned int blowFishTexture;
 
 void preprocessTexture(unsigned& texture, const char* filepath) {
     texture = loadImageToTexture(filepath);
@@ -147,10 +148,10 @@ int main()
     };
 
     float blowFish[] = {
-        -0.1f,  0.1f,  0.0f, 0.0f, 1.0f,
-        -0.1f, -0.1f,  0.0f, 1.0f, 0.0f,
-         0.1f, -0.1f,  1.0f, 0.0f, 0.0f,
-         0.1f,  0.1f,  0.0f, 1.0f, 1.0f
+        -0.1f,  0.1f,   0.0f, 1.0f,  // gornje levo
+        -0.1f, -0.1f,   0.0f, 0.0f,  // donje levo
+         0.1f, -0.1f,   1.0f, 0.0f,  // donje desno
+         0.1f,  0.1f,   1.0f, 1.0f   // gornje desno
     };
 
     // Pravougaonik vode (unutrasnjost akvarijuma)
@@ -189,7 +190,7 @@ int main()
 
     unsigned int VAOGoldFish, VAOBlowFish;
     formVAOs(goldFish, sizeof(goldFish), VAOGoldFish);
-    formVAOs(blowFish, sizeof(blowFish), VAOBlowFish);
+    formVAOTexture(blowFish, sizeof(blowFish), VAOBlowFish);
 
     unsigned int VAOAquarium, VAOBottom, VAOLeft, VAORight;
     formVAOs(aquariumRect, sizeof(aquariumRect), VAOAquarium);
@@ -202,13 +203,23 @@ int main()
 
     glClearColor(0.5f, 0.6f, 1.0f, 1.0f);
 
-    preprocessTexture(sandTexture, "C:/Users/ivrad/Desktop/grafika/Projekat/Akvarijum/x64/Debug/res/sand.png");
+    preprocessTexture(sandTexture, "res/sand.png");
     if (!sandTexture) {
         std::cout << "Neuspesno ucitavanje teksture peska!" << std::endl;
     }
     else {
         std::cout << "Tekstura peska uspesno ucitana!" << std::endl;
     }
+
+    preprocessTexture(blowFishTexture, "res/blowFish.png");
+    if (!blowFishTexture) {
+        std::cout << "Neuspesno ucitavanje teksture blowFishTexture!" << std::endl;
+    }
+    else {
+        std::cout << "Tekstura peska uspesno blowFishTexture!" << std::endl;
+    }
+
+
 
     while (!glfwWindowShouldClose(window))
     {
@@ -230,7 +241,7 @@ int main()
 
         // Ribe (uvek pune, bez providnosti)
         drawRect(rectShader, VAOGoldFish, goldX, goldY);
-        drawRect(rectShader, VAOBlowFish, blowX, blowY);
+        drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f);
 
         // Providno staklo (lagana plava providna površina)
         glUseProgram(rectShader);
