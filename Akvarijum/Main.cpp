@@ -20,6 +20,10 @@ float goldX = 0.0f, goldY = -0.5f;   // goldFish pozicija
 float blowX = 0.5f, blowY = 0.0f;    // blowFish pozicija
 float moveSpeed = 0.005f;
 
+// za velicinu ribice
+float goldScaleY = 1.0f;
+float blowScaleY = 1.0f;
+
 // Dimenzije ekrana
 int screenWidth = 1000;
 int screenHeight = 800;
@@ -30,11 +34,17 @@ unsigned int blowFishTexture;
 unsigned int goldFishTexture;
 unsigned int seaweedTexture;
 unsigned int bubbleTexture;
+unsigned int bugTexture;
+unsigned int wormTexture;
 
 // mehurići vreme
 double lastGoldBubbleTime = 0.0;
 double lastBlowBubbleTime = 0.0;
 double bubbleCooldown = 0.4; // 0.4 sekunde pauze
+
+//hrana vreme
+double lastFoodDropTime = 0.0;
+double foodDropCooldown = 0.4;
 
 void preprocessTexture(unsigned& texture, const char* filepath) {
     texture = loadImageToTexture(filepath);
@@ -109,7 +119,7 @@ void formVAOTexture(float* vertices, size_t size, unsigned int& VAO)
 }
 
 void drawTexturedRect(unsigned int shader, unsigned int VAO, unsigned int texture,
-    float x, float y, float alpha, float scaleX)
+    float x, float y, float alpha, float scaleX, float scaleY)
 {
     glUseProgram(shader);
 
@@ -117,6 +127,7 @@ void drawTexturedRect(unsigned int shader, unsigned int VAO, unsigned int textur
     glUniform1f(glGetUniformLocation(shader, "uY"), y);
     glUniform1f(glGetUniformLocation(shader, "uAlpha"), alpha);
     glUniform1f(glGetUniformLocation(shader, "uScaleX"), scaleX);
+    glUniform1f(glGetUniformLocation(shader, "uScaleY"), scaleY);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -143,6 +154,27 @@ void spawnBubbles(std::vector<Bubble>& bubbles, float fishX, float fishY, float 
     bubbles.push_back({ fishX + mouthOffsetX,     fishY + mouthOffsetY });
     bubbles.push_back({ fishX + mouthOffsetX + 0.03f, fishY + mouthOffsetY + 0.03f });
     bubbles.push_back({ fishX + mouthOffsetX - 0.03f, fishY + mouthOffsetY + 0.05f });
+}
+
+struct Food {
+    float x, y;
+    unsigned int texture;
+    float speed = 0.003f;
+    bool atBottom = false;
+};
+std::vector<Food> foods;
+
+void spawnFood() {
+	bool chooseWorm = (rand() % 2 == 0);
+	int numFoodItems = 2 + (rand() % 3); // između 2 i 4 komada
+    for (int i = 0; i < numFoodItems; i++) {
+        float randomX = ((rand() % 200) / 100.0f) - 1.0f; // od -1 do 1
+        float randomY = 1.1f + (rand() % 50) / 100.0f;    // od 1.10 do 1.19
+
+        unsigned int chosenTexture = chooseWorm ? wormTexture : bugTexture;
+		chooseWorm = !chooseWorm;
+        foods.push_back({ randomX, randomY,chosenTexture });
+    }
 }
 
 int main()
@@ -230,6 +262,13 @@ int main()
          0.02f,-0.02f,   1.0f, 0.0f,   // donje desno
          0.02f, 0.02f,   1.0f, 1.0f    // gornje desno
     };
+
+    float foodVertices[] = {
+        -0.04f, 0.04f,   0.0f, 1.0f,   // gornje levo
+        -0.04f,-0.04f,   0.0f, 0.0f,   // donje levo
+         0.04f,-0.04f,   1.0f, 0.0f,   // donje desno
+         0.04f, 0.04f,   1.0f, 1.0f    // gornje desno
+    };
     unsigned int VAOBubble;
     formVAOTexture(bubbleVertices, sizeof(bubbleVertices), VAOBubble);
     unsigned int VAOGoldFish, VAOBlowFish;
@@ -248,46 +287,19 @@ int main()
     unsigned int VAOSeaweed;
     formVAOTexture(seaweedVertices, sizeof(seaweedVertices), VAOSeaweed);
 
+    unsigned int VAOFood;
+    formVAOTexture(foodVertices, sizeof(foodVertices), VAOFood);
+
     glClearColor(0.7f, 0.8f, 1.0f, 1.0f);
 
     preprocessTexture(sandTexture, "res/sand.png");
-    if (!sandTexture) {
-        std::cout << "Neuspesno ucitavanje teksture peska!" << std::endl;
-    }
-    else {
-        std::cout << "Tekstura peska uspesno ucitana!" << std::endl;
-    }
-
     preprocessTexture(blowFishTexture, "res/blowFish.png");
-    if (!blowFishTexture) {
-        std::cout << "Neuspesno ucitavanje teksture blowFishTexture!" << std::endl;
-    }
-    else {
-        std::cout << "Tekstura peska uspesno blowFishTexture!" << std::endl;
-    }
-
     preprocessTexture(goldFishTexture, "res/goldFish.png");
-    if (!goldFishTexture) {
-        std::cout << "Neuspesno ucitavanje teksture goldFishTexture!" << std::endl;
-    }
-    else {
-        std::cout << "Tekstura peska uspesno goldFishTexture!" << std::endl;
-    }
-
     preprocessTexture(seaweedTexture, "res/seaweed.png");
-    if (!seaweedTexture) {
-        std::cout << "Neuspesno ucitavanje teksture seaweed!" << std::endl;
-    }
-    else {
-        std::cout << "Tekstura seaweed uspesno ucitana!" << std::endl;
-    }
     preprocessTexture(bubbleTexture, "res/bubble.png");
-    if (!bubbleTexture) {
-        std::cout << "Neuspesno ucitavanje teksture bubble!" << std::endl;
-    }
-    else {
-        std::cout << "Tekstura seaweed uspesno bubble!" << std::endl;
-    }
+    preprocessTexture(wormTexture, "res/worm.png");
+    preprocessTexture(bugTexture, "res/bug.png");
+
 
     float goldScaleX = 1.0f;
     float blowScaleX = 1.0f;
@@ -325,28 +337,70 @@ int main()
             }
         }
 
+        //hrana
+        if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+            if (now - lastFoodDropTime > foodDropCooldown){
+                if (foods.size() < 15) // ograničenje da ne zatrpamo akvarijum
+                    spawnFood();
+				lastFoodDropTime = now;
+            }
+        }
+
+        // Pomeri hranu nadole dok ne dotakne pesak
+        for (auto& f : foods) {
+            if (!f.atBottom) {
+                f.y -= f.speed;
+                if (f.y <= -0.8f) { // granica peska
+                    f.y = -0.8f;
+                    f.atBottom = true;
+                }
+            }
+        }
+
+        auto checkCollision = [&](Food& food, float fishX, float fishY, float scaleY) {
+            return fabs(food.x - fishX) < 0.12f && fabs(food.y - fishY) < 0.15f * scaleY;
+            };
+
+        for (int i = 0; i < foods.size(); i++) {
+            if (checkCollision(foods[i], goldX, goldY, goldScaleY)) {
+                goldScaleY += 0.1f;
+                foods.erase(foods.begin() + i); i--;
+                continue;
+            }
+            if (checkCollision(foods[i], blowX, blowY, blowScaleY)) {
+                blowScaleY += 0.1f;
+                foods.erase(foods.begin() + i); i--;
+            }
+        }
+
         //  Pesak
-        drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f);
+        drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+
+        //hrana
+        for (auto& f : foods) {
+    drawTexturedRect(textureShader, VAOFood, f.texture,
+                     f.x, f.y, 1.0f, 1.0f, 1.0f);
+        }
 
         // Seaweed 1 (leva)
-        drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.0f, 0.0f, 1.0f, 1.0f);
+        drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 
 
-        // Ribe (uvek pune, bez providnosti)
+        // Ribe
         // Goldfish – orijentacija
         goldScaleX = (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) ? 1.0f :
             (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) ? -1.0f : goldScaleX;
 
-        drawTexturedRect(textureShader, VAOGoldFish, goldFishTexture, goldX, goldY, 1.0f, goldScaleX);
+        drawTexturedRect(textureShader, VAOGoldFish, goldFishTexture, goldX, goldY, 1.0f, goldScaleX, goldScaleY);
 
         // Blowfish – orijentacija
         blowScaleX = (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) ? -1.0f :
             (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) ? 1.0f : blowScaleX;
 
-        drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f, blowScaleX);
+        drawTexturedRect(textureShader, VAOBlowFish, blowFishTexture, blowX, blowY, 1.0f, blowScaleX, blowScaleY);
 
         // Seaweed 2 (desna)
-        drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.7f, -0.1f, 1.0f, 1.0f);
+        drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.7f, -0.1f, 1.0f, 1.0f, 1.0f);
 
         // Providno staklo (lagana plava providna površina)
         glUseProgram(rectShader);
@@ -362,7 +416,7 @@ int main()
             goldBubbles[i].x += sin(glfwGetTime() * 2.0f + i) * 0.0005f;
 
             drawTexturedRect(textureShader, VAOBubble, bubbleTexture,
-                goldBubbles[i].x, goldBubbles[i].y, 1.0f, 1.0f);
+                goldBubbles[i].x, goldBubbles[i].y, 1.0f, 1.0f, 1.0f);
 
             if (goldBubbles[i].y > 0.4f)
             {
@@ -376,7 +430,7 @@ int main()
             blowBubbles[i].x += sin(glfwGetTime() * 2.0f + i) * 0.0005f;
 
             drawTexturedRect(textureShader, VAOBubble, bubbleTexture,
-                blowBubbles[i].x, blowBubbles[i].y, 1.0f, 1.0f);
+                blowBubbles[i].x, blowBubbles[i].y, 1.0f, 1.0f, 1.0f);
 
             if (blowBubbles[i].y > 0.4f)
             {

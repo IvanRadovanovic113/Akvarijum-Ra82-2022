@@ -67,5 +67,11 @@
     <Image Include="res\seaweed.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bug.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\worm.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
