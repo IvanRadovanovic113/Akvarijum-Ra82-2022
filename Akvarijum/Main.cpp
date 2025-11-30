@@ -5,8 +5,11 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-#include "Util.h"
 #include <vector>
+// >>> NOVO
+#include <thread>
+#include <chrono>
+#include "Util.h"
 
 #define NUM_SLICES 40
 
@@ -36,6 +39,8 @@ unsigned int seaweedTexture;
 unsigned int bubbleTexture;
 unsigned int bugTexture;
 unsigned int wormTexture;
+// >>> NOVO – tekstura sa imenom
+unsigned int nameTagTexture;
 
 // mehurići vreme
 double lastGoldBubbleTime = 0.0;
@@ -165,15 +170,15 @@ struct Food {
 std::vector<Food> foods;
 
 void spawnFood() {
-	bool chooseWorm = (rand() % 2 == 0);
-	int numFoodItems = 2 + (rand() % 3); // između 2 i 4 komada
+    bool chooseWorm = (rand() % 2 == 0);
+    int numFoodItems = 2 + (rand() % 3); // između 2 i 4 komada
     for (int i = 0; i < numFoodItems; i++) {
         float randomX = ((rand() % 200) / 100.0f) - 1.0f; // od -1 do 1
         float randomY = 1.1f + (rand() % 50) / 100.0f;    // od 1.10 do 1.19
 
         unsigned int chosenTexture = chooseWorm ? wormTexture : bugTexture;
-		chooseWorm = !chooseWorm;
-        foods.push_back({ randomX, randomY,chosenTexture });
+        chooseWorm = !chooseWorm;
+        foods.push_back({ randomX, randomY, chosenTexture });
     }
 }
 
@@ -184,7 +189,21 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "Vezba 3", NULL, NULL);
+    // >>> NOVO – FULLSCREEN
+    GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
+    if (!mode) return endProgram("Nije moguće dobiti video mod.");
+
+    screenWidth = mode->width;
+    screenHeight = mode->height;
+
+    GLFWwindow* window = glfwCreateWindow(
+        screenWidth,
+        screenHeight,
+        "Vezba 3",
+        primaryMonitor,   // fullscreen
+        NULL
+    );
     if (window == NULL) return endProgram("Prozor nije uspeo da se kreira.");
     glfwMakeContextCurrent(window);
 
@@ -248,27 +267,37 @@ int main()
         -1.0f, -0.4f,   0.0f, 1.0f
     };
 
-	// morska trava
+    // morska trava
     float seaweedVertices[] = {
-        -0.95f, -0.8f,  0.0f, 0.0f,   // donje levo - malo dublje u pesak
-        -0.73f, -0.8f,  1.0f, 0.0f,   // donje desno (širimo je)
-        -0.73f,  -0.4f, 1.0f, 1.0f,   // gornje desno (malo viša)
-        -0.95f,  -0.4f, 0.0f, 1.0f    // gornje levo
+        -0.95f, -0.8f,  0.0f, 0.0f,
+        -0.73f, -0.8f,  1.0f, 0.0f,
+        -0.73f, -0.4f,  1.0f, 1.0f,
+        -0.95f, -0.4f,  0.0f, 1.0f
     };
-	//mehurići
+
+    // mehurići
     float bubbleVertices[] = {
-        -0.02f, 0.02f,   0.0f, 1.0f,   // gornje levo
-        -0.02f,-0.02f,   0.0f, 0.0f,   // donje levo
-         0.02f,-0.02f,   1.0f, 0.0f,   // donje desno
-         0.02f, 0.02f,   1.0f, 1.0f    // gornje desno
+        -0.02f, 0.02f,   0.0f, 1.0f,
+        -0.02f,-0.02f,   0.0f, 0.0f,
+         0.02f,-0.02f,   1.0f, 0.0f,
+         0.02f, 0.02f,   1.0f, 1.0f
     };
 
     float foodVertices[] = {
-        -0.04f, 0.04f,   0.0f, 1.0f,   // gornje levo
-        -0.04f,-0.04f,   0.0f, 0.0f,   // donje levo
-         0.04f,-0.04f,   1.0f, 0.0f,   // donje desno
-         0.04f, 0.04f,   1.0f, 1.0f    // gornje desno
+        -0.04f, 0.04f,   0.0f, 1.0f,
+        -0.04f,-0.04f,   0.0f, 0.0f,
+         0.04f,-0.04f,   1.0f, 0.0f,
+         0.04f, 0.04f,   1.0f, 1.0f
     };
+
+    // >>> NOVO – pravougaonik za labelu sa imenom (gornji levi ugao)
+    float nameTagVertices[] = {
+        -0.95f,  0.95f,   0.0f, 1.0f,  // gornje levo
+        -0.95f,  0.80f,   0.0f, 0.0f,  // donje levo
+        -0.65f,  0.80f,   1.0f, 0.0f,  // donje desno
+        -0.65f,  0.95f,   1.0f, 1.0f   // gornje desno
+    };
+
     unsigned int VAOBubble;
     formVAOTexture(bubbleVertices, sizeof(bubbleVertices), VAOBubble);
     unsigned int VAOGoldFish, VAOBlowFish;
@@ -290,6 +319,10 @@ int main()
     unsigned int VAOFood;
     formVAOTexture(foodVertices, sizeof(foodVertices), VAOFood);
 
+    // >>> NOVO – VAO za labelu sa imenom
+    unsigned int VAONameTag;
+    formVAOTexture(nameTagVertices, sizeof(nameTagVertices), VAONameTag);
+
     glClearColor(0.7f, 0.8f, 1.0f, 1.0f);
 
     preprocessTexture(sandTexture, "res/sand.png");
@@ -299,16 +332,27 @@ int main()
     preprocessTexture(bubbleTexture, "res/bubble.png");
     preprocessTexture(wormTexture, "res/worm.png");
     preprocessTexture(bugTexture, "res/bug.png");
-
+    // tekstura sa imenom, prezimenom i indeksom (PNG sa alpha kanalom)
+    preprocessTexture(nameTagTexture, "res/nameTag.png");
 
     float goldScaleX = 1.0f;
     float blowScaleX = 1.0f;
 
+    // frame limiter na 75 FPS
+    const double targetFrameTime = 1.0 / 75.0;
+
     while (!glfwWindowShouldClose(window))
     {
+        double frameStartTime = glfwGetTime();
+
         // INPUT
+        // >>> NOVO – ESC za izlaz u svakom trenutku
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+            glfwSetWindowShouldClose(window, true);
+        }
 
         glClear(GL_COLOR_BUFFER_BIT);
+
         if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) goldX -= moveSpeed;
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) goldX += moveSpeed;
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) goldY += moveSpeed;
@@ -339,10 +383,10 @@ int main()
 
         //hrana
         if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) {
-            if (now - lastFoodDropTime > foodDropCooldown){
+            if (now - lastFoodDropTime > foodDropCooldown) {
                 if (foods.size() < 15) // ograničenje da ne zatrpamo akvarijum
                     spawnFood();
-				lastFoodDropTime = now;
+                lastFoodDropTime = now;
             }
         }
 
@@ -361,7 +405,7 @@ int main()
             return fabs(food.x - fishX) < 0.12f && fabs(food.y - fishY) < 0.15f * scaleY;
             };
 
-        for (int i = 0; i < foods.size(); i++) {
+        for (int i = 0; i < (int)foods.size(); i++) {
             if (checkCollision(foods[i], goldX, goldY, goldScaleY)) {
                 goldScaleY += 0.1f;
                 foods.erase(foods.begin() + i); i--;
@@ -378,13 +422,12 @@ int main()
 
         //hrana
         for (auto& f : foods) {
-    drawTexturedRect(textureShader, VAOFood, f.texture,
-                     f.x, f.y, 1.0f, 1.0f, 1.0f);
+            drawTexturedRect(textureShader, VAOFood, f.texture,
+                f.x, f.y, 1.0f, 1.0f, 1.0f);
         }
 
         // Seaweed 1 (leva)
         drawTexturedRect(textureShader, VAOSeaweed, seaweedTexture, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
-
 
         // Ribe
         // Goldfish – orijentacija
@@ -411,7 +454,7 @@ int main()
         glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
         // GOLD mehurići
-        for (int i = 0; i < goldBubbles.size(); i++) {
+        for (int i = 0; i < (int)goldBubbles.size(); i++) {
             goldBubbles[i].y += goldBubbles[i].speed;
             goldBubbles[i].x += sin(glfwGetTime() * 2.0f + i) * 0.0005f;
 
@@ -425,7 +468,7 @@ int main()
         }
 
         // BLOW mehurići
-        for (int i = 0; i < blowBubbles.size(); i++) {
+        for (int i = 0; i < (int)blowBubbles.size(); i++) {
             blowBubbles[i].y += blowBubbles[i].speed;
             blowBubbles[i].x += sin(glfwGetTime() * 2.0f + i) * 0.0005f;
 
@@ -438,6 +481,10 @@ int main()
             }
         }
 
+        // Ivan Radovanovic RA82-2022
+        drawTexturedRect(textureShader, VAONameTag, nameTagTexture,
+            0.0f, 0.0f, 0.7f, 1.0f, 1.0f); // alpha = 0.7f za poluprovidnost
+
         // Crne ivice akvarijuma (iznad svega)
         glUseProgram(colorShader);
         glUniform4f(glGetUniformLocation(colorShader, "uColor"), 0.0f, 0.0f, 0.0f, 1.0f);
@@ -448,6 +495,15 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+        // >>> NOVO – frame limiter: 75 FPS
+        double frameEndTime = glfwGetTime();
+        double frameTime = frameEndTime - frameStartTime;
+        if (frameTime < targetFrameTime) {
+            std::this_thread::sleep_for(
+                std::chrono::duration<double>(targetFrameTime - frameTime)
+            );
+        }
     }
 
     glDeleteProgram(rectShader);
