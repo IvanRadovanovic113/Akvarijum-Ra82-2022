@@ -1,5 +1,4 @@
-﻿  Main.cpp
-C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(195,34): warning C4566: character represented by universal-character-name '\u0107' cannot be represented in the current code page (1252)
-C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(459,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(473,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\x64\Debug\Akvarijum.exe
+﻿  Util.cpp
+C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\Util.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\Util.cpp(173,1): warning C4715: 'loadImageToCursor': not all control paths return a value
+  V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\x64\Debug\Akvarijum.exe

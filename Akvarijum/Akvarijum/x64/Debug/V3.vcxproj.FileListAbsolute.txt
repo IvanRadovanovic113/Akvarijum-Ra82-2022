@@ -1,3 +1,4 @@
 C:\Users\ivrad\Desktop\grafika\vezbe\RG_V3\V3\x64\Debug\glew32.dll
 C:\Users\ivrad\Desktop\grafika\vezbe\Projekat\Akvarijum\x64\Debug\glew32.dll
 C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\x64\Debug\glew32.dll
+C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\x64\Debug\glew32.dll

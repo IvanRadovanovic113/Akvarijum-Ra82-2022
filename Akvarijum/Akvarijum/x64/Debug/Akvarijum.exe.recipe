@@ -2,12 +2,12 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\x64\Debug\Akvarijum.exe</FullPath>
+      <FullPath>C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\x64\Debug\Akvarijum.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\res\sand.png</FullPath>
+      <FullPath>C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\res\sand.png</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

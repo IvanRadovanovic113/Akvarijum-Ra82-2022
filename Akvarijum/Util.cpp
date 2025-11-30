@@ -28,6 +28,15 @@ unsigned int compileShader(GLenum type, const char* source)
         std::cout << "Greska pri citanju fajla sa putanje \"" << source << "\"!" << std::endl;
     }
     std::string temp = ss.str();
+
+    if (temp.size() >= 3 &&
+        (unsigned char)temp[0] == 0xEF &&
+        (unsigned char)temp[1] == 0xBB &&
+        (unsigned char)temp[2] == 0xBF)
+    {
+        temp.erase(0, 3); // ukloni BOM
+    }
+
     const char* sourceCode = temp.c_str(); //Izvorni kod sejdera koji citamo iz fajla na putanji "source"
 
     int shader = glCreateShader(type); //Napravimo prazan sejder odredjenog tipa (vertex ili fragment)
