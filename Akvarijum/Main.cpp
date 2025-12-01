@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-// >>> NOVO
+
 #include <thread>
 #include <chrono>
 #include "Util.h"
@@ -39,7 +39,9 @@ unsigned int seaweedTexture;
 unsigned int bubbleTexture;
 unsigned int bugTexture;
 unsigned int wormTexture;
-// >>> NOVO – tekstura sa imenom
+unsigned int openChest;
+unsigned int closedChest;
+// ime
 unsigned int nameTagTexture;
 
 // mehurići vreme
@@ -290,12 +292,19 @@ int main()
          0.04f, 0.04f,   1.0f, 1.0f
     };
 
-    // >>> NOVO – pravougaonik za labelu sa imenom (gornji levi ugao)
+    // pravougaonik za labelu sa imenom (gornji levi ugao)
     float nameTagVertices[] = {
         -0.95f,  0.95f,   0.0f, 1.0f,  // gornje levo
         -0.95f,  0.80f,   0.0f, 0.0f,  // donje levo
         -0.65f,  0.80f,   1.0f, 0.0f,  // donje desno
         -0.65f,  0.95f,   1.0f, 1.0f   // gornje desno
+    };
+
+    float chestVertices[] = {
+        -0.95f, -0.55f,   0.0f, 1.0f,   // gornje levo
+        -0.95f, -0.95f,   0.0f, 0.0f,   // donje levo
+        -0.45f, -0.95f,   1.0f, 0.0f,   // donje desno
+        -0.45f, -0.55f,   1.0f, 1.0f    // gornje desno
     };
 
     unsigned int VAOBubble;
@@ -319,7 +328,10 @@ int main()
     unsigned int VAOFood;
     formVAOTexture(foodVertices, sizeof(foodVertices), VAOFood);
 
-    // >>> NOVO – VAO za labelu sa imenom
+    unsigned int VAOChest;
+    formVAOTexture(chestVertices, sizeof(chestVertices), VAOChest);
+
+    // VAO za labelu sa imenom
     unsigned int VAONameTag;
     formVAOTexture(nameTagVertices, sizeof(nameTagVertices), VAONameTag);
 
@@ -332,6 +344,8 @@ int main()
     preprocessTexture(bubbleTexture, "res/bubble.png");
     preprocessTexture(wormTexture, "res/worm.png");
     preprocessTexture(bugTexture, "res/bug.png");
+    preprocessTexture(openChest, "res/chestOpen.png");
+    preprocessTexture(closedChest, "res/chestClosed.png");
     // tekstura sa imenom, prezimenom i indeksom (PNG sa alpha kanalom)
     preprocessTexture(nameTagTexture, "res/nameTag.png");
 
@@ -341,12 +355,14 @@ int main()
     // frame limiter na 75 FPS
     const double targetFrameTime = 1.0 / 75.0;
 
+    bool ChestOpen = false;
+    double lastChestTime = 0,chestCooldown = 1;
+
     while (!glfwWindowShouldClose(window))
     {
         double frameStartTime = glfwGetTime();
 
         // INPUT
-        // >>> NOVO – ESC za izlaz u svakom trenutku
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, true);
         }
@@ -364,6 +380,11 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) blowY -= moveSpeed;
 
         double now = glfwGetTime();
+        if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS && now - lastChestTime > chestCooldown)
+        {
+            ChestOpen = !ChestOpen;
+            lastChestTime = now;
+        }
 
         // GOLD (Z)
         if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
@@ -419,6 +440,11 @@ int main()
 
         //  Pesak
         drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+
+        // kovceg
+        drawTexturedRect(textureShader, VAOChest,
+            ChestOpen ? openChest : closedChest,
+            1.2f, 0.0f, 1.0f, 0.6f, 1.0f);
 
         //hrana
         for (auto& f : foods) {

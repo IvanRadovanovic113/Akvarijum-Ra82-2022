@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\rect.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
@@ -62,13 +62,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Util.cpp",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Util.cpp",
               "RelativeDocumentMoniker": "Util.cpp",
               "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Util.cpp",
               "RelativeToolTip": "Util.cpp",
-              "ViewState": "AgIAABAAAAAAAAAAAAAswB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAswB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-28T14:03:16.955Z",
               "EditorCaption": ""
@@ -83,8 +83,7 @@
               "RelativeToolTip": "rect.frag",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-27T21:01:07.165Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-27T21:01:07.165Z"
             },
             {
               "$type": "Document",
@@ -100,13 +99,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Main.cpp",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Main.cpp",
               "RelativeDocumentMoniker": "Main.cpp",
               "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Akvarijum-Ra82-2022\\Akvarijum\\Main.cpp",
               "RelativeToolTip": "Main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAALMBAAAAAAAAAAAAAL4BAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-27T20:19:17.101Z",
               "EditorCaption": ""

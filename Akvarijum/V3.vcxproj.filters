@@ -73,5 +73,11 @@
     <Image Include="res\worm.png">
       <Filter>res</Filter>
     </Image>
+    <Image Include="res\chestOpen.png">
+      <Filter>res</Filter>
+    </Image>
+    <Image Include="res\chestClosed.png">
+      <Filter>res</Filter>
+    </Image>
   </ItemGroup>
 </Project>
