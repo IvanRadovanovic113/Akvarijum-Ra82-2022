@@ -208,6 +208,13 @@ int main()
     );
     if (window == NULL) return endProgram("Prozor nije uspeo da se kreira.");
     glfwMakeContextCurrent(window);
+    GLFWcursor* anchorCursor = loadImageToCursor("res/sidro.png");
+    if (anchorCursor != nullptr) {
+        glfwSetCursor(window, anchorCursor);
+    }
+    else {
+        std::cout << "Cursor nije postavljen. PNG nije ucitan." << std::endl;
+    }
 
     if (glewInit() != GLEW_OK) return endProgram("GLEW nije uspeo da se inicijalizuje.");
 
@@ -346,7 +353,7 @@ int main()
     preprocessTexture(bugTexture, "res/bug.png");
     preprocessTexture(openChest, "res/chestOpen.png");
     preprocessTexture(closedChest, "res/chestClosed.png");
-    // tekstura sa imenom, prezimenom i indeksom (PNG sa alpha kanalom)
+    // tekstura sa imenom, prezimenom i indeksom
     preprocessTexture(nameTagTexture, "res/nameTag.png");
 
     float goldScaleX = 1.0f;
@@ -369,15 +376,15 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT);
 
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) goldX -= moveSpeed;
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) goldX += moveSpeed;
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) goldY += moveSpeed;
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) goldY -= moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS && goldX > -0.85) goldX -= moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS && goldX < 0.85) goldX += moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && goldY<0.4) goldY += moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && goldY > -0.95) goldY -= moveSpeed;
 
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) blowX -= moveSpeed;
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) blowX += moveSpeed;
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) blowY += moveSpeed;
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) blowY -= moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS && blowX > -0.92) blowX -= moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS && blowX < 0.92) blowX += moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS && blowY < 0.35) blowY += moveSpeed;
+        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS && blowY > -0.95) blowY -= moveSpeed;
 
         double now = glfwGetTime();
         if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS && now - lastChestTime > chestCooldown)
@@ -442,9 +449,12 @@ int main()
         drawTexturedRect(textureShader, VAOSand, sandTexture, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 
         // kovceg
+        float moveposY = !ChestOpen ? 0.0f : -0.23f;
+        float moveposX = ChestOpen ? 0.0f : 0.1f;
+        float chestScale = ChestOpen ? 1.2f : 1.0f;
         drawTexturedRect(textureShader, VAOChest,
             ChestOpen ? openChest : closedChest,
-            1.2f, 0.0f, 1.0f, 0.6f, 1.0f);
+            1.2f - moveposX, 0.0f - moveposY, 1.0f, 0.6f * chestScale, 1.0f * chestScale);
 
         //hrana
         for (auto& f : foods) {

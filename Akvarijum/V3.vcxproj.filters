@@ -79,5 +79,8 @@
     <Image Include="res\chestClosed.png">
       <Filter>res</Filter>
     </Image>
+    <Image Include="res\sidro.png">
+      <Filter>res</Filter>
+    </Image>
   </ItemGroup>
 </Project>

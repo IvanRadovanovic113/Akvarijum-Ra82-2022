@@ -1,5 +1,5 @@
 ﻿  Main.cpp
-C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\Main.cpp(197,34): warning C4566: character represented by universal-character-name '\u0107' cannot be represented in the current code page (1252)
-C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\Main.cpp(485,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\Main.cpp(499,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\Akvarijum-Ra82-2022\Akvarijum\x64\Debug\Akvarijum.exe
+C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(197,34): warning C4566: character represented by universal-character-name '\u0107' cannot be represented in the current code page (1252)
+C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(495,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(509,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\x64\Debug\Akvarijum.exe
