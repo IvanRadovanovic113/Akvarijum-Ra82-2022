@@ -1,9 +1,0 @@
-﻿  GameObjects.cpp
-  Main.cpp
-C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(197,34): warning C4566: character represented by universal-character-name '\u0107' cannot be represented in the current code page (1252)
-C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(495,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\Main.cpp(509,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  Renderer.cpp
-  TextureUtils.cpp
-  Generating Code...
-  V3.vcxproj -> C:\Users\ivrad\Desktop\grafika\Projekat\Akvarijum\x64\Debug\Akvarijum.exe
