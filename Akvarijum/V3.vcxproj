@@ -134,11 +134,17 @@
     <None Include="texture.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameObjects.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="TextureUtils.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameObjects.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TextureUtils.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>

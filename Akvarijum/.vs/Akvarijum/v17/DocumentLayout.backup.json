@@ -7,6 +7,30 @@
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\GameObjects.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:GameObjects.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\GameObjects.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:GameObjects.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\TextureUtils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:TextureUtils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\TextureUtils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:TextureUtils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{64EA5ED4-B6A1-42F1-A5D0-D4F9CA863FDA}|V3.vcxproj|solutionrelative:Util.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -34,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +66,85 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameObjects.cpp",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\GameObjects.cpp",
+              "RelativeDocumentMoniker": "GameObjects.cpp",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\GameObjects.cpp*",
+              "RelativeToolTip": "GameObjects.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-05T14:08:07.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameObjects.h",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\GameObjects.h",
+              "RelativeDocumentMoniker": "GameObjects.h",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\GameObjects.h*",
+              "RelativeToolTip": "GameObjects.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-05T14:08:04.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TextureUtils.cpp",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\TextureUtils.cpp",
+              "RelativeDocumentMoniker": "TextureUtils.cpp",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\TextureUtils.cpp*",
+              "RelativeToolTip": "TextureUtils.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-05T14:08:01.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "TextureUtils.h",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\TextureUtils.h",
+              "RelativeDocumentMoniker": "TextureUtils.h",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\TextureUtils.h*",
+              "RelativeToolTip": "TextureUtils.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-05T14:07:57.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Renderer.cpp",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Renderer.cpp",
+              "RelativeDocumentMoniker": "Renderer.cpp",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Renderer.cpp*",
+              "RelativeToolTip": "Renderer.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-05T14:07:52.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Renderer.h",
+              "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Renderer.h",
+              "RelativeDocumentMoniker": "Renderer.h",
+              "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Renderer.h*",
+              "RelativeToolTip": "Renderer.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-05T14:07:47.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "texture.frag",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.frag",
               "RelativeDocumentMoniker": "texture.frag",
@@ -54,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "texture.vert",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\texture.vert",
               "RelativeDocumentMoniker": "texture.vert",
@@ -66,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Util.cpp",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Util.cpp",
               "RelativeDocumentMoniker": "Util.cpp",
@@ -78,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "rect.frag",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\rect.frag",
               "RelativeDocumentMoniker": "rect.frag",
@@ -90,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "rect.vert",
               "DocumentMoniker": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\rect.vert",
               "RelativeDocumentMoniker": "rect.vert",
@@ -108,7 +210,7 @@
               "RelativeDocumentMoniker": "Main.cpp",
               "ToolTip": "C:\\Users\\ivrad\\Desktop\\grafika\\Projekat\\Akvarijum\\Main.cpp",
               "RelativeToolTip": "Main.cpp",
-              "ViewState": "AgIAAL8AAAAAAAAAAAAAANIAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAOoBAAAAAAAAAAAAAPwBAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-27T20:19:17.101Z",
               "EditorCaption": ""

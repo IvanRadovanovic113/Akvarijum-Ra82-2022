@@ -524,7 +524,7 @@ int main()
         // Crne ivice akvarijuma (iznad svega)
         glUseProgram(colorShader);
         glUniform4f(glGetUniformLocation(colorShader, "uColor"), 0.0f, 0.0f, 0.0f, 1.0f);
-        glLineWidth(8.0f);
+        glLineWidth(8.0f);  
         drawLine(colorShader, VAOBottom);
         drawLine(colorShader, VAOLeft);
         drawLine(colorShader, VAORight);
